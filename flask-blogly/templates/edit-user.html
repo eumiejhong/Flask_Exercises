@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
-<h1>Edit a user</h1>
-<form action="/users" method="POST">
-    <input type="text" name="first_name" placeholder="First Name" value="{{ user.first_name }}">
-    <input type="text" name="last_name" placeholder="Last Name" value="{{ user.last_name }}">
-    <input type="text" name="image_url" placeholder="Image URL" value="{{ user.image_url }}">
-    <a href="/users">Cancel</button>
-    <button type="submit">Save</button>
-</form>
+{% block title %} Edit a user {% endblock %}
+
+{% block content %}
+
+    <h1>Edit a user</h1>
+    <form method="POST">
+        <div class="form-group row">
+            <input type="text" name="first_name" placeholder="First Name" value="{{ user.first_name }}">
+        </div>
+        <br>
+        <div class="form-group row">
+            <input type="text" name="last_name" placeholder="Last Name" value="{{ user.last_name }}">
+        </div>
+        <br>
+        <div class="form-group row">
+            <input type="text" name="image_url" placeholder="Image URL" value="{{ user.image_url }}">
+        </div>
+        <br>
+        <div class="form-group row">
+            <a href="/users" class="btn btn-outline-info">Cancel</a>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+{% endblock %}

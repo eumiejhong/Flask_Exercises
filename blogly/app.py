@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post
+from models import db, connect_db, User
 
 
 app = Flask(__name__)
@@ -16,10 +16,6 @@ toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 db.create_all()
-
-@app.route('/')
-def homepage():
-    return redirect('/users')
 
 @app.route('/users')
 def show_users():
@@ -86,7 +82,7 @@ def show_new_post(post_id):
 @app.route('/posts/<int:post_id>/edit')
 def edit_post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('edit-post.html', post=post)
+    return render_template('edit-post-form.html', post=post)
 
 @app.route('/posts/<int:post_id>/edit', methods=["POST"])
 def update_post(post_id):
