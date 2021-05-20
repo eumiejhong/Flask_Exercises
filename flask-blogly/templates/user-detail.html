@@ -31,7 +31,9 @@
     <br>
     <h2>User Posts</h2>
     {% for post in user.posts %}
-        <li>{{ post.title }}</li>
+        <li>
+            <a href="/posts/{{ post.post_id }}">{{ post.title }} on {{ post.friendly_date }}</a>
+        </li>
     {% endfor %}
 
     <p><a href="/users/{{ user.user_id }}/posts/new" class="btn btn-primary">Add Post</a></p>

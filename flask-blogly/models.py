@@ -1,5 +1,6 @@
 """Models for Blogly."""
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 
 db = SQLAlchemy()
@@ -12,8 +13,8 @@ class User(db.Model):
 
     __tablename__ = "users"
     user_id = db.Column(db.Integer,
-                   primary_key=True,
-                   autoincrement=True)
+                        primary_key=True,
+                        autoincrement=True)
     first_name = db.Column(db.String(50), 
                            nullable=False)
     last_name = db.Column(db.String(50),
@@ -25,14 +26,15 @@ class Post(db.Model):
     
     __tablename__ = "posts"
     post_id = db.Column(db.Integer,
-                   primary_key=True,
-                   autoincrement=True)
+                        primary_key=True,
+                        autoincrement=True)
     title = db.Column(db.String(100),
                       nullable=False)
     content = db.Column(db.String,
-                      nullable=False)
+                        nullable=False)
     created_at = db.Column(db.DateTime,
-                           nullable=False)
+                           nullable=False,
+                           default=datetime.datetime.now)
     user_id = db.Column(db.Integer, 
                         db.ForeignKey("users.user_id"))
     
@@ -49,19 +51,21 @@ class Tag(db.Model):
                        primary_key=True,
                        autoincrement=True)
     tag_name = db.Column(db.String,
-                         nullable=False)
+                        nullable=False)
+    post = db.relationship('Post', 
+                            secondary='post_tags',
+                            backref='tags')
 
 class PostTag(db.Model):
 
     __tablename__ = "post_tags"
-    post_tag_id = db.Column(db.Integer,
+    post_id = db.Column(db.Integer,
                         db.ForeignKey("posts.post_id"),
                         primary_key=True)
-    post_tag_id = db.Column(db.Integer,
-                            db.ForeignKey("tags.tag_id"),
-                            primary_key=True)
+    tag_id = db.Column(db.Integer,
+                        db.ForeignKey("tags.tag_id"),
+                        primary_key=True)
 
-                            
 
 
 

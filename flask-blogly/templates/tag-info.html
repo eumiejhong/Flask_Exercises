@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Show Tags!{% endblock %}
+
+{% block content %}
+
+    <ul>
+        {% for tag in tags %}
+        <li>
+            <a href='/' class='btn btn-success'>{{ tag.tag_name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>
+        <a href='/tags/new' class='btn btn-primary'>Add New Tag!</a>
+    </p>
+
+{% endblock %}
