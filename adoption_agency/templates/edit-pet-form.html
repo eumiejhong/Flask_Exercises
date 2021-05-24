@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>{{ pet.name }}</h2>
+
+    <div class="col-sm-2 col-6">
+        <img src="{{ pet.photo() }}"
+        alt="{{ pet.name }}"
+        class="img-thumbnail">
+    </div>
+
+    <form id="edit-pet-form" method="POST">
+
+        {{ form.hidden_tag() }}
+
+        {% for field in form %}
+
+            {% if field.widget.input_type != 'hidden' %}
+
+                <p>
+                    {{ field.label }}
+                    {{field}}
+
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </p>
+            {% endif %}
+        {% endfor %}
+        <button type="Update">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>{{ pet.name }}</h2>
+    <div class="col-sm-2 col-6">
+        <img src="{{ pet.photo() }}"
+        alt="{{ pet.name }}"
+        class="img-thumbnail">
+    </div>
+    <p>Available? {{ pet.available }}</p>
+    <p>{{ pet.notes }}</p>
+    
+
+    <a href='/pets/edit/{{ pet.id }}' method="GET" class="btn btn-success">Edit Pet</a>
+    <a href='/' class="btn btn-primary">Home</a>
+
+{% endblock %}

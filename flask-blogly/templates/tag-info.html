@@ -7,7 +7,7 @@
     <ul>
         {% for tag in tags %}
         <li>
-            <a href='/' class='btn btn-success'>{{ tag.tag_name }}</a>
+            <a href='/tags/{{ tag.tag_id }}' class='btn btn-success'>{{ tag.tag_name }}</a>
         </li>
         {% endfor %}
     </ul>
